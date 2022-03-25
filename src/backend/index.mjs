@@ -1,5 +1,5 @@
 import { config } from 'dotenv';
-import express from 'express';
+import express, { request } from 'express';
 
 if (process.env.NODE_ENV !== 'production') config();
 
@@ -93,6 +93,10 @@ app.get('/users/', (request, response)=>{
         }
     });
 });
+//BORRAR USERS
+app.delete('/users/', (request, response)=>{
+
+})
 
 app.post('/message/', authMiddleware, (request, response) => {
     const [ source ] =  decodeBasicToken(request)
