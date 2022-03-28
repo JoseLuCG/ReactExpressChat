@@ -1,5 +1,6 @@
 import { config } from 'dotenv';
 import express, { request } from 'express';
+import cors from 'cors';
 
 if (process.env.NODE_ENV !== 'production') config();
 
@@ -15,6 +16,7 @@ import {
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // Nuestra nodelo de datos.
 class User {
