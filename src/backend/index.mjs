@@ -95,6 +95,13 @@ app.get('/users/', (request, response)=>{
 });
 //BORRAR USERS
 app.delete('/users/', (request, response)=>{
+    findUser(userName, (error, data)=>{
+        if (error) {
+            console.error(error);
+            response.send("Datos no encontrados");
+        }
+        if 
+    });
 
 })
 
