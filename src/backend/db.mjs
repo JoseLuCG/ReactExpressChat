@@ -64,11 +64,12 @@ export function insertUser ( userObject, callback ) {
     db.run(sql,callback);
 }
 //BORRAR USERS
+/*
 export function deleteUser (id, callback) {
     const del= `DELETE ${id} FROM ${users}`;
     db.run(del,callback);
 }
-
+*/
 export function getUsers ( callback ) {
     db.all("SELECT id, name FROM users", callback);
 }

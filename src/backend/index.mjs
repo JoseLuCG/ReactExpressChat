@@ -96,6 +96,7 @@ app.get('/users/', (request, response)=>{
     });
 });
 //BORRAR USERS
+/*
 app.delete('/users/', (request, response)=>{
     findUser(userName, (error, data)=>{
         if (error) {
@@ -106,6 +107,7 @@ app.delete('/users/', (request, response)=>{
     });
 
 })
+*/
 
 app.post('/message/', authMiddleware, (request, response) => {
     const [ source ] =  decodeBasicToken(request)
