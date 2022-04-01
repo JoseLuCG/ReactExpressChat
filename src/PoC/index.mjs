@@ -82,7 +82,7 @@ function updateButtonClickHandler() {
     getUsers();
     getMessages()
 }
-
+//TODO // Obtaiin the pass and create the json to send the info for the backend, and with this log for the page.
 
 
 htmlUpdateButton.addEventListener("click", updateButtonClickHandler)
