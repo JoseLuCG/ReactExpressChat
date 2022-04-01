@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,16 +8,21 @@
     <script src="index.mjs" type="module"></script>
     <title>Document</title>
 </head>
-<body>
-    <h1>Probadores API</h1>
-    <h2>Respuesta GET /users/: <span id="getUsers"></span></h2>
-    <h3>Respuesta de GET /messages/: <span id="getMessages"></span></h3>
-    <button id="updateButton">Update</button>
-    <form>
-        <label for="inputNombre">Nombre de usuario</label>
-        <input type="text" class="inputNombre">
-        <button>Enviar</button>
-    </form>
 
+<body>
+    <div>
+        <h1>Probadores API</h1>
+        <h2>Respuesta GET /users/: <span id="getUsers"></span></h2>
+        <h3>Respuesta de GET /messages/: <span id="getMessages"></span></h3>
+    </div>
+    <div>
+        <button id="updateButton">Update</button>
+        <label for="inputNombre">Nombre de usuario</label>
+        <input type="text" id="inputNombre">
+        <label for="inputPass">Contraseña</label>
+        <input type="text" id="inputPass">
+        <button id="submit">Enviar</button>
+    </div>
 </body>
+
 </html>

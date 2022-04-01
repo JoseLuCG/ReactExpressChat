@@ -2,7 +2,6 @@ const host = "https://web-develop-react-express-chat.herokuapp.com"
 const htmlGetUsers = document.querySelector("#getUsers");
 const htmlUpdateButton = document.querySelector("#updateButton");
 const htmlGetMessages = document.querySelector("#getMessages");
-const htmlForm = document.querySelector("form");
 /**
  * Receives the array of objets wiht the data.
  * @param {String} url - Url of database.
@@ -32,6 +31,7 @@ async function getUsers () {
  * then print in the window the data.
  */
 async function getMessages() {
+    
     const messages = await authGet ( host+'/messages/', 1648801787789, "abc123" );
     htmlGetMessages.innerText = JSON.stringify(messages);
 
@@ -68,23 +68,39 @@ async function authGet ( url, id, password ) {
 
 }
 /**
- * Obtains the user of the form.
- * @returns The user.
+ * Create a json with the data to transfer at backend.
  */
-function formUserSubmitHandler(ev){
-    ev.preventDefault();
-    const usuario =ev.target[0].value
-    console.log(usuario)
-    //return usuario;
+function newUserHandler () {
+    const user = document.querySelector("#inputNombre");
+    const pass = document.querySelector("#inputPass");
+    const dataOject = { userName: user.value, password: pass.value};
+    const data = JSON.stringify(dataOject);
+    newUser(host, data);
+}
+
+async function newUser(url, data) {
+    const response = await fetch(
+        url+'/login/',
+        {
+            method: 'POST',
+            body: data,
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }
+    );
+    const responseData = await response.json();
+    return responseData;
+
 }
 
 function updateButtonClickHandler() {
     getUsers();
     getMessages()
 }
-//TODO // Obtaiin the pass and create the json to send the info for the backend, and with this log for the page.
+
 
 
 htmlUpdateButton.addEventListener("click", updateButtonClickHandler)
 
-htmlForm.addEventListener("submit", formUserSubmitHandler)
+document.querySelector("#submit").addEventListener("click", newUserHandler)
