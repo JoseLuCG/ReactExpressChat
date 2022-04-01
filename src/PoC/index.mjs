@@ -2,9 +2,10 @@ const host = "https://web-develop-react-express-chat.herokuapp.com"
 const htmlGetUsers = document.querySelector("#getUsers");
 const htmlUpdateButton = document.querySelector("#updateButton");
 const htmlGetMessages = document.querySelector("#getMessages");
+const htmlForm = document.querySelector("form");
 /**
  * Receives the array of objets wiht the data.
- * @param {*} url - Url of database.
+ * @param {String} url - Url of database.
  * @returns - Return the data in form of array of objetcts.
  */
 async function get(url) {
@@ -18,7 +19,8 @@ async function get(url) {
 }
 /**
  * Get the users of the backend.
- * Take the data and transform it in string.
+ * Take the data and transform it in string,
+ * then print in the window the data.
  */
 async function getUsers () {
     const users = await get(host+"/users/");
@@ -26,10 +28,11 @@ async function getUsers () {
 };
 /**
  * Get the messages of the backend.
- * Take the data and transform it in string.
+ * Take the data and transform it in string,
+ * then print in the window the data.
  */
 async function getMessages() {
-    const messages = await get(host+"/messages/");
+    const messages = await authGet ( host+'/messages/', 1648801787789, "abc123" );
     htmlGetMessages.innerText = JSON.stringify(messages);
 
 }
@@ -47,7 +50,13 @@ function authToken(name, password) {
     const base64Token = btoa(authToken);
     return `Basic ${base64Token}`;
 }
-
+/**
+ * Obtain the data with authorization.
+ * @param {String} url - Url.
+ * @param {Number} id - Id of user.
+ * @param {String} password - Pass of user.
+ * @returns 
+ */
 async function authGet ( url, id, password ) {
     const response = await fetch(
         url,
@@ -58,12 +67,24 @@ async function authGet ( url, id, password ) {
     return data;
 
 }
+/**
+ * Obtains the user of the form.
+ * @returns The user.
+ */
+function formUserSubmitHandler(ev){
+    ev.preventDefault();
+    const usuario =ev.target[0].value
+    console.log(usuario)
+    //return usuario;
+}
 
 function updateButtonClickHandler() {
     getUsers();
-    getMessages();
+    getMessages()
 }
 
 
 
 htmlUpdateButton.addEventListener("click", updateButtonClickHandler)
+
+htmlForm.addEventListener("submit", formUserSubmitHandler)
