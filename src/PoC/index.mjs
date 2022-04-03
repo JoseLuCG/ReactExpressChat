@@ -2,6 +2,7 @@ const host = "https://web-develop-react-express-chat.herokuapp.com"
 const htmlGetUsers = document.querySelector("#getUsers");
 const htmlUpdateButton = document.querySelector("#updateButton");
 const htmlGetMessages = document.querySelector("#getMessages");
+const login = document.querySelector("#submit");
 /**
  * Receives the array of objets wiht the data.
  * @param {String} url - Url of database.
@@ -77,7 +78,13 @@ function newUserHandler () {
     const data = JSON.stringify(dataOject);
     newUser(host, data);
 }
-
+/**
+ * This fuction send a post to the backend, with the information
+ * for login.
+ * @param {String} url - The host and the rute of API.
+ * @param {String} data - Objet in string of data of users. 
+ * @returns - The object whith the data.
+ */
 async function newUser(url, data) {
     const response = await fetch(
         url+'/login/',
@@ -103,4 +110,4 @@ function updateButtonClickHandler() {
 
 htmlUpdateButton.addEventListener("click", updateButtonClickHandler)
 
-document.querySelector("#submit").addEventListener("click", newUserHandler)
+login.addEventListener("click", newUserHandler)
