@@ -1,0 +1,16 @@
+body {
+    background-color: rgb(104, 102, 102);
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+#submit {
+    margin: 2px;
+}
+#updateButton {
+    margin: 2px;  
+}
