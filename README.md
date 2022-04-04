@@ -24,6 +24,34 @@ Algunos ejemplos con los que empezar:
 
 ```js
 /**
+ * JSON GET
+ */ 
+async function get(url) {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+}
+
+/**
+ *  JSON POST
+ */
+
+async function post(url, data) {
+    const response = await fetch(
+        url,
+        {
+            method: 'POST',
+            body: data,
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }
+    );
+    const responseData = await response.json();
+    return responseData;
+}
+
+/**
  * Create authorization token
  */
 
@@ -35,46 +63,53 @@ function authToken(id, secret) {
     return `Basic ${base64token}`;
 }
 
-
 /**
- * JSON GET
- */ 
-async function get(url) {
-    const response = await fetch(url);
+ * GET con autenticación
+ */
+async function authGet(url, token) {
+    const response = await fetch(
+        url,
+        { 
+            headers: {
+                Authorization: token
+            }
+        }
+    );
     const data = await response.json();
     return data;
 }
 
 /**
- *  JSON POST
- */ 
-async function post(url, data) {
+ * POST con autenticación
+ */
+async function authPost(url, token, data) {
     const response = await fetch(
         url,
         {
-            method: 'POST',
-            body: JSON.stringify(data),
+            method: "POST",
+            body: data,
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: token
+            }
         }
     );
     const responseData = await response.json();
     return responseData;
 }
 
-/**
- * GET con autenticación
- */
-async function authGet(url, id, secret) {
-    const response = await fetch(
-        url,
-        { headers: {
-            Authorization: authToken(id, secret) 
-    }});
-    const data = await response.json();
-    return data;
-}
-
 // Casos de uso sobre la API del ejemplo
-post(url+"/login/", {userName: "Dani", password: "abc123"})
-get(url+"/users/")
-authGet(url+"users/", "Dani", "abc123"});
+const host = "http://loquesea.com/";
+let data = "";
+
+get(host+"/users/");
+
+data = JSON.stringify({userName: "Dani", password: "abc123"});
+post(url+"/login/", data);
+
+const token = authToken("234234234234","abc123");
+authGet(url+"/messages/", token});
+
+data = JSON.stringify({content: "Tengo una cosa que no funciona."});
+authPost(url+"/message/", token, data);
 ```
