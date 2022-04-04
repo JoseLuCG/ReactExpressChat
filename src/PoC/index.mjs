@@ -100,7 +100,9 @@ async function newUser(url, data) {
     return responseData;
 
 }
-
+/**
+ * Handler for the button `update`.
+ */
 function updateButtonClickHandler() {
     getUsers();
     getMessages()
