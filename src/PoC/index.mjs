@@ -9,11 +9,7 @@ const login = document.querySelector("#submit");
  * @returns - Return the data in form of array of objetcts.
  */
 async function get(url) {
-    const response = await fetch(url, {
-        headers: {
-            'Accept': 'application/json'
-        }
-    });
+    const response = await fetch(url);
     const data = await response.json();
     return data;
 }
