@@ -8,7 +8,7 @@ function App() {
     <>
     <Login/>
     <Messages/>
-    <SendMessage/>
+    <SendMessage id="qweqwe" password="qweqwe"/>
     </>
   );
 }
