@@ -1,5 +1,5 @@
 import './SendMessage.css'
-function SendMessage ({id, password}) {
+function SendMessage ({id, pass}) {
     return (
         <div class="sendConteiner">
         <h1>Esto es el imput de send message.</h1>

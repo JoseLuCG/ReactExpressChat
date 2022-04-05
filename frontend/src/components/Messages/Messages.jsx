@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { getMessages } from "../../apitools.mjs";
 import './Messages.css'
 
-function Messages () {
+function Messages ({id, pass}) {
     const [ messages, setMessages] = useState("");
 
     function updateMessages() {
-        getMessages(setMessages);
+        getMessages(id, pass, setMessages);
     }
     //Implements a counter to refresh the messages every second.
     useEffect(

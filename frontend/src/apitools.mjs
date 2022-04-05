@@ -1,7 +1,5 @@
 
 export const host = "https://web-develop-react-express-chat.herokuapp.com";
-export let idUser = 1649067014480;
-export let passUser = "abc123";
 
 /**
  * Create a authorization token.
@@ -39,7 +37,7 @@ export function authToken(name, password) {
  * Take the data and transform it in string,
  * then print in the window the data.
  */
-export async function getMessages(yourUseState) {
+export async function getMessages(idUser, passUser,yourUseState) {
     
     const message = await authGet ( host+'/messages/', idUser, passUser );
     yourUseState(JSON.stringify(message));
