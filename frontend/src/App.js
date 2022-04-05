@@ -1,14 +1,16 @@
 import Login from './components/Login/Login';
 import Messages from './components/Messages/Messages';
 import SendMessage from './components/SendMessage/SendMessage';
+import Singin from './components/Singin/Singin';
 import './App.css';
 
 function App() {
   return (
     <>
     <Login/>
-    <Messages id="1649152935663" pass="abc123"/>
-    <SendMessage id="1649152935663" pass="abc123"/>
+    <Messages id="1649168805776" pass="123"/>
+    <SendMessage id="1649168805776" pass="123"/>
+    <Singin/>
     </>
   );
 }

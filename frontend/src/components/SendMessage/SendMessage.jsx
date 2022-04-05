@@ -21,7 +21,7 @@ function SendMessage ({id, pass}) {
         <div className="sendConteiner">
         <h1>Esto es el imput de send message.</h1>
         <textarea onChange={receiveTextInput}></textarea>
-        <button onClick={sendHandler}>Enviar</button>
+        <button className="SendButton" onClick={sendHandler}>Enviar</button>
         </div>
     );
 }

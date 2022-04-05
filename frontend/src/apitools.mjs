@@ -88,6 +88,6 @@ export async function post(url, data) {
     return responseData;
 }
 
-export function login(data) {
+export async function login(data) {
     post(host+'/login/', data);
 }

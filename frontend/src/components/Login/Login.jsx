@@ -25,7 +25,7 @@ function Login() {
             <h1>Esto es el login.</h1>
             <input type="text" id="inputName" placeholder='Usuario' onChange={changeUser} />
             <input type="password" id="inputPass" placeholder='Contraseña' onChange={changePass} />
-            <button className="enterButton" onClick={clickLogin}>Entrar</button>
+            <button className="enterButton" onClick={clickLogin} >Entrar</button>
         </div>
     );
 }

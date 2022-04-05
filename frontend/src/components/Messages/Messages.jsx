@@ -11,7 +11,7 @@ function Messages ({id, pass}) {
     //Implements a counter to refresh the messages every second.
     useEffect(
         ()=>{
-            setInterval(updateMessages, 1000)},
+            setInterval(updateMessages, 500)},
         []
     );
     return (
