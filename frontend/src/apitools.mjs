@@ -1,6 +1,4 @@
-
 export const host = "https://web-develop-react-express-chat.herokuapp.com";
-
 /**
  * Create a authorization token.
  * @param {String} name - Name of user.
@@ -22,11 +20,11 @@ export function authToken(name, password) {
  * @param {String} password - Pass of user.
  * @returns 
  */
- export async function authGet ( url, id, password ) {
+ export async function authGet ( url, token ) {
     const response = await fetch(
         url,
         { headers: {
-            Authorization: authToken(id, password)
+            Authorization: token
         }});
     const data = await response.json();
     return data;
@@ -38,8 +36,8 @@ export function authToken(name, password) {
  * then print in the window the data.
  */
 export async function getMessages(idUser, passUser,yourUseState) {
-    
-    const message = await authGet ( host+'/messages/', idUser, passUser );
+    const token = authToken(idUser, passUser);
+    const message = await authGet ( host+'/messages/', token);
     yourUseState(JSON.stringify(message));
 }
 
