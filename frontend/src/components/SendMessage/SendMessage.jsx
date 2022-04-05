@@ -1,9 +1,27 @@
+import { useState } from 'react';
+import { authPost, authToken, sendMessage } from '../../apitools.mjs';
 import './SendMessage.css'
 function SendMessage ({id, pass}) {
+    const token = authToken(id, pass);
+    const [message, setMessage] = useState("");
+    const data = JSON.stringify({content: message});
+    
+    
+    //Save the input text in message. 
+    function receiveTextInput(ev){
+        setMessage(ev.target.value)
+    }
+    //send the message.
+    function sendHandler(){
+        sendMessage(token, data)
+        
+    }
+
     return (
-        <div class="sendConteiner">
+        <div className="sendConteiner">
         <h1>Esto es el imput de send message.</h1>
-        <textarea></textarea>
+        <textarea onChange={receiveTextInput}></textarea>
+        <button onClick={sendHandler}>Enviar</button>
         </div>
     );
 }

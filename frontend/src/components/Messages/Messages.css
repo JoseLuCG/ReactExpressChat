@@ -1,3 +1,7 @@
 .messageContainer{
     background-color: rgb(33, 141, 141);
 }
+.contentMessages {
+    border: solid;
+    border-width: 5px;
+}

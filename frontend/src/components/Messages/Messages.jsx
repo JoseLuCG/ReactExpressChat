@@ -15,9 +15,9 @@ function Messages ({id, pass}) {
         []
     );
     return (
-        <div class="messageContainer">
+        <div className="messageContainer">
             <h1>Estos son los mensages.</h1>
-            <div>{messages}</div>
+            <div className="contentMessages">{messages}</div>
         </div>
     );
 }

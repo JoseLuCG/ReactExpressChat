@@ -1,4 +1,5 @@
 export const host = "https://web-develop-react-express-chat.herokuapp.com";
+
 /**
  * Create a authorization token.
  * @param {String} name - Name of user.
@@ -40,4 +41,53 @@ export async function getMessages(idUser, passUser,yourUseState) {
     const message = await authGet ( host+'/messages/', token);
     yourUseState(JSON.stringify(message));
 }
+/**
+ * Create a post with authorization.
+ * @param {string} url - Url to send a petition.
+ * @param {string} token - The authorization.
+ * @param {string} data - The content of a message.
+ * @returns 
+ */
+export async function authPost(url, token, data) {
+    const response = await fetch(
+        url,
+        {
+            method: "POST",
+            body: data,
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: token
+            }
+        }
+    );
+    const responseData = await response.json();
+    return responseData;
+}
+/**
+ * Send a message.
+ * @param {string} token - A token that send a message. 
+ * @param {string} data - A content of the message.
+ */
+export async function sendMessage(token, data) {
+    authPost(host+'/message/',token, data);
+}
 
+
+export async function post(url, data) {
+    const response = await fetch(
+        url,
+        {
+            method: 'POST',
+            body: data,
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }
+    );
+    const responseData = await response.json();
+    return responseData;
+}
+
+export function login(data) {
+    post(host+'/login/', data);
+}
