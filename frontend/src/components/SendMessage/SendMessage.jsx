@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { authPost, authToken, sendMessage } from '../../apitools.mjs';
+import { authToken, sendMessage } from '../../apitools.mjs';
 import './SendMessage.css'
 function SendMessage ({id, pass}) {
     const token = authToken(id, pass);
@@ -13,8 +13,7 @@ function SendMessage ({id, pass}) {
     }
     //send the message.
     function sendHandler(){
-        sendMessage(token, data)
-        
+        sendMessage(token, data);
     }
 
     return (

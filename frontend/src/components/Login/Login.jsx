@@ -3,7 +3,7 @@ import { login } from '../../apitools.mjs';
 import './Login.css'
 
 
-function Login() {
+function Login({buttonHandler}) {
     const [user, setUser] = useState("");
     const [pass, setPass] = useState("");
     const data = JSON.stringify({userName: user, password: pass});
@@ -17,7 +17,12 @@ function Login() {
     }
     //Functions:
     function clickLogin() {
+        if (user !== "" && pass !== ""){
         login(data);
+        buttonHandler(true);
+        }else {
+            window.alert("¡Debes registrarte para entrar!");
+        }
     }
 
     return (
