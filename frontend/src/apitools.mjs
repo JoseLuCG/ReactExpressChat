@@ -89,5 +89,6 @@ export async function post(url, data) {
 }
 
 export async function login(data) {
-    post(host+'/login/', data);
+    const id = await post(host+'/login/', data);
+    console.log(id);
 }
