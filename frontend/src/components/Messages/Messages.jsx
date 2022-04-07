@@ -22,8 +22,8 @@ function Messages ({id, pass}) {
     );
     useEffect(
         ()=>{
-            const msg = createhtmlElements(messages);
-            setHtmlMessages(msg);
+            const messagesHtml = createhtmlElements(messages);
+            setHtmlMessages(messagesHtml);
         },
         [messages]
     );

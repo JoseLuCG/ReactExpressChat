@@ -49,19 +49,21 @@ export async function getMessages(idUser, passUser,yourUseState) {
  * @returns 
  */
 export async function authPost(url, token, data) {
-    const response = await fetch(
-        url,
-        {
-            method: "POST",
-            body: data,
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: token
+    try {
+        const response = await fetch(
+            url,
+            {
+                method: "POST",
+                body: data,
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: token
+                }
             }
-        }
-    );
-    const responseData = await response.json();
-    return responseData;
+        );
+        const responseData = await response.json();
+        return responseData;
+    } catch (err) {}
 }
 /**
  * Send a message.
@@ -92,6 +94,9 @@ export async function login(data) {
     const id = await post(host+'/login/', data);
     console.log(id);
 }
+
+// MAPS FUNCTIONS: 
+
 /**
  * Transform the messages in html elements.
  * @param {array} array 
@@ -99,8 +104,16 @@ export async function login(data) {
 export function createhtmlElements(array){
     const data = array.map(
         (item)=> <li>
-            Tiempo: <span>{item.time}</span> Usuario <span>{item.source}</span> Contenido <span>{item.content}</span> 
+            Tiempo: <span>{item.time}</span> | Usuario: <span>{item.source}</span> | Contenido: <span>{item.content}</span> 
                 </li>
-    )
+    );
     return data;
 }
+/*
+export function transformTime (array) {
+    const data = array.map(
+        (item) => {
+            date(item.time).toLocalString(), item.source, item.content}
+    );
+}
+*/
