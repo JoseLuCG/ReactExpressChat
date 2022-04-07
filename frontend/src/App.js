@@ -13,8 +13,8 @@ function App() {
   return (
     <>
     {!loggedIn &&<Login buttonHandler={setLoggedIn}/>}
-    <Messages id="1649240014987" pass="abc123"/>
-    <SendMessage id="1649240014987" pass="abc123"/>
+    <Messages id="1649317427201" pass="123"/>
+    <SendMessage id="1649317427201" pass="123"/>
     <Singin/>
     </>
   );

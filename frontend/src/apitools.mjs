@@ -39,7 +39,7 @@ export function authToken(name, password) {
 export async function getMessages(idUser, passUser,yourUseState) {
     const token = authToken(idUser, passUser);
     const message = await authGet ( host+'/messages/', token);
-    yourUseState(JSON.stringify(message));
+    yourUseState(message);
 }
 /**
  * Create a post with authorization.
@@ -91,4 +91,16 @@ export async function post(url, data) {
 export async function login(data) {
     const id = await post(host+'/login/', data);
     console.log(id);
+}
+/**
+ * Transform the messages in html elements.
+ * @param {array} array 
+ */
+export function createhtmlElements(array){
+    const data = array.map(
+        (item)=> <li>
+            Tiempo: <span>{item.time}</span> Usuario <span>{item.source}</span> Contenido <span>{item.content}</span> 
+                </li>
+    )
+    return data;
 }
