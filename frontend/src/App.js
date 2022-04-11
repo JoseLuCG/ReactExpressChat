@@ -7,14 +7,13 @@ import './App.css';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [canSendMessages, setCanSendMessages] = useState(false);
   //Handlers:
 
   return (
     <>
     {!loggedIn &&<Login buttonHandler={setLoggedIn}/>}
-    <Messages id="1649329821168" pass="abc123"/>
-    <SendMessage id="1649329821168" pass="abc123"/>
+    {loggedIn && <Messages id="1649668629052" pass="abc123"/>}
+    {loggedIn && <SendMessage id="1649668629052" pass="abc123"/>}
     <Singin/>
     </>
   );
