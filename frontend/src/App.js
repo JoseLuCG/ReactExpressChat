@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Login from './components/Login/Login';
 import Messages from './components/Messages/Messages';
 import SendMessage from './components/SendMessage/SendMessage';
@@ -7,13 +7,25 @@ import './App.css';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [dataUser, setDataUser] = useState({
+    user: "",
+    pass: "",
+    id: 0
+  });
   //Handlers:
+
+  useEffect(
+    ()=>{
+      console.log(dataUser);
+    },
+    [dataUser]
+  );
 
   return (
     <>
-    {!loggedIn &&<Login buttonHandler={setLoggedIn}/>}
-    {loggedIn && <Messages id="1649668629052" pass="abc123"/>}
-    {loggedIn && <SendMessage id="1649668629052" pass="abc123"/>}
+    {!loggedIn &&<Login buttonHandler={setLoggedIn} collectorData={setDataUser}/>}
+    {loggedIn && <Messages id={dataUser.id} pass={dataUser.pass}/>}
+    {loggedIn && <SendMessage id={dataUser.id} pass={dataUser.pass}/>}
     <Singin/>
     </>
   );

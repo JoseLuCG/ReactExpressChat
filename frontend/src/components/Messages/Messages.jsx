@@ -18,7 +18,7 @@ function Messages ({id, pass}) {
             if (timer.current !=0) clearInterval(timer.current);
             timer.current = setInterval(updateMessages, 500)
         },
-        []
+        [id, pass]
     );
     useEffect(
         ()=>{

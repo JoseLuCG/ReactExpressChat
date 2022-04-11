@@ -6,10 +6,10 @@ export const host = "https://web-develop-react-express-chat.herokuapp.com";
  * @param {String} password - Pass of user.
  * @returns Returns encoding auhorization.
  */
-export function authToken(name, password) {
+export function authToken(id, password) {
         /*In Basic authorization: 
       user and password are separate with ":".*/
-      const authToken = `${name}:${password}`;
+      const authToken = `${id}:${password}`;
       // And encoded in base64 it.
       const base64Token = btoa(authToken);
       return `Basic ${base64Token}`;
@@ -93,6 +93,7 @@ export async function post(url, data) {
 export async function login(data) {
     const id = await post(host+'/login/', data);
     console.log(id);
+    return id
 }
 
 // MAPS FUNCTIONS: 

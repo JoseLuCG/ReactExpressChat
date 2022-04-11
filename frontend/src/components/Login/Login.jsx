@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { login } from '../../apitools.mjs';
 import './Login.css'
 
 
-function Login({buttonHandler}) {
+function Login({buttonHandler, collectorData}) {
     const [user, setUser] = useState("");
     const [pass, setPass] = useState("");
+    const ID = useRef(0)
     const data = JSON.stringify({userName: user, password: pass});
 
     //Login hamlers:
@@ -14,12 +15,16 @@ function Login({buttonHandler}) {
     }
     function changePass(ev){
         setPass(ev.target.value);
+
     }
     //Functions:
     function clickLogin() {
+        let id = 0;
         if (user !== "" && pass !== ""){
-        login(data);
-        buttonHandler(true);
+            login(data).then( (id) => {
+                buttonHandler(true);
+                collectorData({id, user, pass});
+            });
         }else {
             window.alert("¡Debes registrarte para entrar!");
         }
