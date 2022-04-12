@@ -110,16 +110,25 @@ export function createhtmlElements(array){
     );
     return data;
 }
-// TODO arreglar la transformación de los datos.
 
-/*
+
+
 export function transformTime (array) { 
     const data = array.map(
-        (item) => {
-            const d = new Date(item.time);
-            let time = d.toLocaleString();
-           item.time = time;
+        (obj) => {
+            const newObj = {
+                time: 0,
+                source: 0,
+                content: ""
+            };
+        const msgDate =  new Date(obj.time)
+        const dateString = msgDate.toLocaleString();
+        newObj.time = dateString;
+        newObj.source = obj.source;
+        newObj.content = obj.content;
+        return newObj;
         }
     );
+    return data;
 }
-*/
+
