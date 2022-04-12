@@ -105,7 +105,7 @@ export async function login(data) {
 export function createhtmlElements(array){
     const data = array.map(
         (item)=> <li>
-            Tiempo: <span>{item.time}</span> | Usuario: <span>{item.source}</span> | Contenido: <span>{item.content}</span> 
+                    <span>{item.time}</span> | Usuario: <span>{item.source}</span> | Contenido: <span>{item.content}</span> 
                 </li>
     );
     return data;

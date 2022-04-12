@@ -27,7 +27,6 @@ function Messages ({id, pass}) {
         ()=>{
             //Transform the time.
             const timeTransform = transformTime(messages);
-            console.log(timeTransform);
             const messagesHtml = createhtmlElements(timeTransform);
             setHtmlMessages(messagesHtml);
         },
