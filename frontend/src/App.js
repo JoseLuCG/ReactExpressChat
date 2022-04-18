@@ -26,8 +26,10 @@ function App() {
     <>
     {registrer && !loggedIn && <Singin/>}
     {!loggedIn && <Login buttonHandler={setLoggedIn} collectorData={setDataUser} registrered={setRegistrer}/>}
-    {loggedIn &&  <Messages id={dataUser.id} pass={dataUser.pass}/>}
-    {loggedIn &&  <SendMessage id={dataUser.id} pass={dataUser.pass}/>}
+    {loggedIn && <div>
+      <Messages id={dataUser.id} pass={dataUser.pass}/>
+      <SendMessage id={dataUser.id} pass={dataUser.pass}/>
+    </div>}
     </>
   );
 }
