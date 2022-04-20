@@ -7,6 +7,7 @@ import './App.css';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [registrer, setRegistrer] = useState(false);
   const [dataUser, setDataUser] = useState({
     user: "",
     pass: "",
@@ -23,10 +24,12 @@ function App() {
 
   return (
     <>
-    {!loggedIn &&<Login buttonHandler={setLoggedIn} collectorData={setDataUser}/>}
-    {loggedIn && <Messages id={dataUser.id} pass={dataUser.pass}/>}
-    {loggedIn && <SendMessage id={dataUser.id} pass={dataUser.pass}/>}
-    <Singin/>
+    {registrer && !loggedIn && <Singin/>}
+    {!loggedIn && <Login buttonHandler={setLoggedIn} collectorData={setDataUser} registrered={setRegistrer}/>}
+    {loggedIn && <div>
+      <Messages id={dataUser.id} pass={dataUser.pass}/>
+      <SendMessage id={dataUser.id} pass={dataUser.pass}/>
+    </div>}
     </>
   );
 }

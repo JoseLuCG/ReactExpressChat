@@ -3,7 +3,7 @@ import { login } from '../../apitools.mjs';
 import './Login.css'
 
 
-function Login({buttonHandler, collectorData}) {
+function Login({buttonHandler, collectorData, registrered}) {
     const [user, setUser] = useState("");
     const [pass, setPass] = useState("");
     const ID = useRef(0)
@@ -29,6 +29,10 @@ function Login({buttonHandler, collectorData}) {
             window.alert("¡Debes registrarte para entrar!");
         }
     }
+    function clickSingin() {
+        registrered(true);
+        buttonHandler(true);
+    }
 
     return (
         <div className="loginContainer">
@@ -36,6 +40,7 @@ function Login({buttonHandler, collectorData}) {
             <input type="text" id="inputName" placeholder='Usuario' onChange={changeUser} />
             <input type="password" id="inputPass" placeholder='Contraseña' onChange={changePass} />
             <button className="enterButton" onClick={clickLogin} >Entrar</button>
+            <button className="singinButton" onClick={clickSingin}>Logueate</button>
         </div>
     );
 }
