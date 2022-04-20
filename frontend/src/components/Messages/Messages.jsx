@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { createhtmlElements, getMessages, transformTime } from "../../apitools.mjs";
+import { createhtmlElements, getMessages, transformTime, transformUserIdToUserName } from "../../apitools.mjs";
 import './Messages.css'
 
 function Messages ({id, pass}) {
@@ -27,7 +27,8 @@ function Messages ({id, pass}) {
         ()=>{
             //Transform the time.
             const timeTransform = transformTime(messages);
-            const messagesHtml = createhtmlElements(timeTransform);
+            const userTransform = transformUserIdToUserName(timeTransform)
+            const messagesHtml = createhtmlElements(userTransform);
             setHtmlMessages(messagesHtml);
         },
         [messages]

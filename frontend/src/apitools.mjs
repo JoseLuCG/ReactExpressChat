@@ -1,5 +1,10 @@
 export const host = "https://web-develop-react-express-chat.herokuapp.com";
 
+async function get(url) {
+    const response = await fetch (url);
+    const data = await response.json();
+    return data;
+}
 /**
  * Create a authorization token.
  * @param {String} name - Name of user.
@@ -74,7 +79,9 @@ export async function sendMessage(token, data) {
     authPost(host+'/message/',token, data);
 }
 
-
+/**
+ * Send a post to the backend.
+ */
 export async function post(url, data) {
     const response = await fetch(
         url,
@@ -89,11 +96,21 @@ export async function post(url, data) {
     const responseData = await response.json();
     return responseData;
 }
-
+/**
+ * Loging in the chat a one user.
+ * @param {string} data - Name and password user. 
+ * @returns - Id of the user.
+ */
 export async function login(data) {
     const id = await post(host+'/login/', data);
     console.log(id);
     return id
+}
+
+async function getUsers () {
+    const response = await get(host+"/users/");
+    const users = response.json();
+    return users;
 }
 
 // MAPS FUNCTIONS: 
@@ -110,9 +127,11 @@ export function createhtmlElements(array){
     );
     return data;
 }
-
-
-
+/**
+ * Transform thr time at a human time.
+ * @param {Array} array 
+ * @returns 
+ */
 export function transformTime (array) { 
     const data = array.map(
         (obj) => {
@@ -131,4 +150,26 @@ export function transformTime (array) {
     );
     return data;
 }
-
+/**
+ * Transform the id suer to name user.
+ * @param {array} array 
+ * @param {array} userArray 
+ * @returns - A array with the name of users.
+ */
+export function transformUserIdToUserName (array, userArray){
+    const data = array.map(
+        (obj) => {
+            const newObj = {
+                time: 0,
+                source: 0,
+                content: ""
+            };
+        //const user = obj.find( idx => idx.id === idx.source);
+        newObj.time = obj.time;
+        newObj.source = JSON.stringify(getUsers());
+        newObj.content = obj.content;
+        return newObj;
+        }
+    );
+    return data;
+}

@@ -21,7 +21,7 @@ async function get(url) {
 async function getUsers () {
     const users = await get(host+"/users/");
     htmlGetUsers.innerText = JSON.stringify(users);
-};
+}
 /**
  * Get the messages of the backend.
  * Take the data and transform it in string,
