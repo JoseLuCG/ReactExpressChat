@@ -107,9 +107,9 @@ export async function login(data) {
     return id
 }
 
-async function getUsers () {
+ export async function getUsers () {
     const response = await get(host+"/users/");
-    const users = response.json();
+    const users = JSON.stringify(response);
     return users;
 }
 
@@ -165,8 +165,9 @@ export function transformUserIdToUserName (array, userArray){
                 content: ""
             };
         //const user = obj.find( idx => idx.id === idx.source);
+        const users = "Paco"
         newObj.time = obj.time;
-        newObj.source = JSON.stringify(getUsers());
+        newObj.source = users;
         newObj.content = obj.content;
         return newObj;
         }

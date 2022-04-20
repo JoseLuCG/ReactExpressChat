@@ -3,6 +3,7 @@ import Login from './components/Login/Login';
 import Messages from './components/Messages/Messages';
 import SendMessage from './components/SendMessage/SendMessage';
 import Singin from './components/Singin/Singin';
+import Borrame from './components/Borrame';
 import './App.css';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
       <Messages id={dataUser.id} pass={dataUser.pass}/>
       <SendMessage id={dataUser.id} pass={dataUser.pass}/>
     </div>}
+    <Borrame/>
     </>
   );
 }
