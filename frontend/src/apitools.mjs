@@ -118,8 +118,10 @@ export function transformTime (array) {
         (item) => {
             const d = new Date(item.time);
             let time = d.toLocaleString();
-           item.time = time;
+            item.time = time
+            return item.time;
         }
     );
+    return data;
 }
 */
