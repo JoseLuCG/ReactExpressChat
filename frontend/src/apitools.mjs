@@ -106,15 +106,25 @@ export async function login(data) {
     console.log(id);
     return id
 }
-
+/**
+ * Get the object with users.
+ * @returns - Object of users.
+ */
  export async function getUsers () {
-    const response = await get(host+"/users/");
-    const users = JSON.stringify(response);
+    const users = await get(host+"/users/");
     return users;
 }
-
+/**
+ * Extract the array of users from the object.
+ * @returns {array} - Array with the users.
+ */
+export async function extractUsers(){
+    const usersApi = await getUsers();
+    return usersApi;
+}
+//////////////////////////////////////////////////////////////////////////////
 // MAPS FUNCTIONS: 
-
+//////////////////////////////////////////////////////////////////////////////
 /**
  * Transform the messages in html elements.
  * @param {array} array 
