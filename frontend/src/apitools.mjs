@@ -175,9 +175,10 @@ export function transformUserIdToUserName (array, userArray){
                 content: ""
             };
         //const user = obj.find( idx => idx.id === idx.source);
-        const users = "Paco"
+        const arrayUsers = extractUsers()
+        const userId = arrayUsers.find( elm => elm.id === newObj.source);
         newObj.time = obj.time;
-        newObj.source = users;
+        newObj.source = userId.name;
         newObj.content = obj.content;
         return newObj;
         }
