@@ -5,8 +5,9 @@ import './Messages.css'
 function Messages ({id, pass}) {
     const [ messages, setMessages] = useState([]);
     const [ htmlMessages, setHtmlMessages ] = useState([]);
+    const [ refrescUsers, setRefrescUsers ] = useState([]);
     const timer = useRef(0)
-
+    // Handlers:
     function updateMessages() {
         getMessages(id, pass, setMessages);
     }
@@ -33,6 +34,14 @@ function Messages ({id, pass}) {
         },
         [messages]
     );
+
+    useEffect(
+        ()=>{
+
+        },
+        [refrescUsers]
+    );
+
     return (
         <div className="messageContainer">
             <h1>Estos son los mensages.</h1>
