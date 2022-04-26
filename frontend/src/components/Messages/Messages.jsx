@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { createhtmlElements, getMessages, transformTime, transformUserIdToUserName } from "../../apitools.mjs";
+import { createhtmlElements, extractUsers, getMessages, transformTime, transformUserIdToUserName } from "../../apitools.mjs";
 import './Messages.css'
 
 function Messages ({id, pass}) {
@@ -11,7 +11,10 @@ function Messages ({id, pass}) {
     function updateMessages() {
         getMessages(id, pass, setMessages);
     }
-
+    async function updateUsers() {
+        const users = await extractUsers()
+        setRefrescUsers(users);
+    }
     //Implements a counter to refresh the messages every second.
     /* With this way only have a one counter.*/
     useEffect(
@@ -28,7 +31,7 @@ function Messages ({id, pass}) {
         ()=>{
             //Transform the time.
             const timeTransform = transformTime(messages);
-            const userTransform = transformUserIdToUserName(timeTransform)
+            const userTransform = transformUserIdToUserName(timeTransform,refrescUsers)
             const messagesHtml = createhtmlElements(userTransform);
             setHtmlMessages(messagesHtml);
         },
@@ -37,9 +40,9 @@ function Messages ({id, pass}) {
 
     useEffect(
         ()=>{
-
+            updateUsers()
         },
-        [refrescUsers]
+        []
     );
 
     return (

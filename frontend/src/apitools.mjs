@@ -122,6 +122,8 @@ export async function extractUsers(){
     const usersApi = await getUsers();
     return usersApi;
 }
+
+
 //////////////////////////////////////////////////////////////////////////////
 // MAPS FUNCTIONS: 
 //////////////////////////////////////////////////////////////////////////////
@@ -166,21 +168,22 @@ export function transformTime (array) {
  * @param {array} userArray 
  * @returns - A array with the name of users.
  */
+
 export function transformUserIdToUserName (array, userArray){
     const data = array.map(
-        (obj) => {
+        (msg) => {
             const newObj = {
                 time: 0,
                 source: 0,
                 content: ""
             };
-        //const user = obj.find( idx => idx.id === idx.source);
-        const arrayUsers = extractUsers()
-        const userId = arrayUsers.find( elm => elm.id === newObj.source);
-        newObj.time = obj.time;
-        newObj.source = userId.name;
-        newObj.content = obj.content;
-        return newObj;
+        
+            const arrayUsers = userArray
+            const user = arrayUsers.find( user => user.id === msg.source);
+            newObj.time = msg.time;
+            newObj.source = user.name;
+            newObj.content = msg.content;
+            return newObj;
         }
     );
     return data;
